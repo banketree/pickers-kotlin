@@ -1,0 +1,3 @@
+rootProject.name='android-pickers-kotlin'
+include ':app'
+include ':pickers'
