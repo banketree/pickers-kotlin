@@ -136,7 +136,8 @@ public class MainActivity extends BaseActivity {
      * 年月日选择
      * */
     public void onYearMonthDayPicker(View view) {
-        final DatePicker picker = new DatePicker(this);
+//        final DatePicker picker = new DatePicker(this);
+        final DatePicker picker = new CustomDatePicker(this);
         picker.setTopPadding(15);
         picker.setRangeStart(2016, 8, 29);
         picker.setRangeEnd(2111, 1, 11);
@@ -145,6 +146,12 @@ public class MainActivity extends BaseActivity {
         picker.setLineColor(Color.BLACK);
         picker.setSelectedTextColor(Color.BLACK);
         picker.setGravity(Gravity.BOTTOM);
+//        picker.setOnlyCenterLabel(true);
+        picker.setLineVisible(false);
+//        LineConfig lineConfig = new LineConfig();
+//        lineConfig.setColor(ContextCompat.getColor(activity, R.color.line_graycd));
+//        lineConfig.setDividerType(LineConfig.DividerType.FILL);
+//        picker.setLineConfig(lineConfig);
         picker.setOnDatePickListener(new DatePicker.OnYearMonthDayPickListener() {
             @Override
             public void onDatePicked(String year, String month, String day) {

@@ -21,6 +21,7 @@ import cn.addapp.pickers.R;
 
 /**
  * 带确定及取消按钮的弹窗
+ *
  * @author matt
  * blog: addapp.cn
  */
@@ -234,9 +235,11 @@ public abstract class ConfirmDialog<V extends View> extends BaseDialog<View> {
     public void setBackgroundColor(@ColorInt int backgroundColor) {
         this.backgroundColor = backgroundColor;
     }
+
     public void setBackgroundRes(@DrawableRes int res) {
         this.backgroundRes = res;
     }
+
     public void setTitleView(View titleView) {
         this.titleView = titleView;
     }
@@ -267,19 +270,24 @@ public abstract class ConfirmDialog<V extends View> extends BaseDialog<View> {
      * @see #makeCenterView()
      * @see #makeFooterView()
      */
+    public int leftRootPadding = 0;
+    public int topRootPadding = 0;
+    public int rightRootPadding = 0;
+    public int bottomRootPadding = 0;
+
     @Override
-    protected final View makeContentView() {
+    protected View makeContentView() {
         LinearLayout rootLayout = new LinearLayout(activity);
         rootLayout.setLayoutParams(new LinearLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT));
         rootLayout.setBackgroundColor(backgroundColor);
-        if(0!=backgroundRes){
+        if (0 != backgroundRes) {
             rootLayout.setBackgroundResource(backgroundRes);
         }
         rootLayout.setOrientation(LinearLayout.VERTICAL);
         rootLayout.setGravity(Gravity.CENTER);
-        rootLayout.setPadding(0, 0, 0, 0);
+        rootLayout.setPadding(leftRootPadding, topRootPadding, rightRootPadding, bottomRootPadding);
         rootLayout.setClipToPadding(false);
-        if(isActionButtonTop){
+        if (isActionButtonTop) {
             View headerView = makeHeaderView();
             if (headerView != null) {
                 rootLayout.addView(headerView);
@@ -292,11 +300,11 @@ public abstract class ConfirmDialog<V extends View> extends BaseDialog<View> {
                 rootLayout.addView(lineView);
             }
             LinearLayout.LayoutParams rootParams = new LinearLayout.LayoutParams(MATCH_PARENT, 0, 1.0f);
-            rootParams.setMargins(0,15,0,15);
+            rootParams.setMargins(0, 15, 0, 15);
             rootLayout.addView(makeCenterView(), rootParams);
-        }else{
+        } else {
             LinearLayout.LayoutParams rootParams = new LinearLayout.LayoutParams(MATCH_PARENT, 0, 1.0f);
-            rootParams.setMargins(0,15,0,15);
+            rootParams.setMargins(0, 15, 0, 15);
             rootLayout.addView(makeCenterView(), rootParams);
             if (topLineVisible) {
                 View lineView = new View(activity);
@@ -479,15 +487,17 @@ public abstract class ConfirmDialog<V extends View> extends BaseDialog<View> {
 
         return topButtonLayout;
     }
+
     /*
-    * 点击确定按钮的回调
-    * */
+     * 点击确定按钮的回调
+     * */
     protected void onSubmit() {
 
     }
+
     /*
-    * 点击取消按钮的回调
-    * */
+     * 点击取消按钮的回调
+     * */
     protected void onCancel() {
 
     }
